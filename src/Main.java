@@ -25,5 +25,15 @@ class SumRunnable implements Runnable {
 
 public class Main {
     public static void main(String[] args) {
+        int[][] dataSets = {
+                {1, 2, 3, 4, 5},
+                {10, 20, 30},
+                {7, 14, 21, 28},
+                {100, 200, 300, 400}
+        };
+
+        for(int i = 0; i < dataSets.length; i++) {
+            Thread sumThread = new Thread(new SumRunnable(dataSets[i]));
+        }
     }
 }
