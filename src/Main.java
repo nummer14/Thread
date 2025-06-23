@@ -1,39 +1,27 @@
-class SumRunnable implements Runnable {
-    private final int[] numbers;
+class SumThread extends Thread {
+    private int[] array;
+    private int start, end;
+    private int partialSum = 0;
 
-    public SumRunnable(int[] numbers) {
-        this.numbers = numbers;
+    public SumThread(int[] array, int start, int end) {
+        this.array = array;
+        this.start = start;
+        this.end = end;
     }
 
     @Override
     public void run() {
-        int sum = 0;
-
-        for(int n: numbers) {
-            sum += n;
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println("Thread interrupted.");
-            }
+        for(int i = start; i < end; i++) {
+            partialSum += array[i];
         }
+    }
 
-        System.out.println(Thread.currentThread().getName() + " - Sum: " + sum);
+    public int getPartialSum() {
+        return partialSum;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        int[][] dataSets = {
-                {1, 2, 3, 4, 5},
-                {10, 20, 30},
-                {7, 14, 21, 28},
-                {100, 200, 300, 400}
-        };
-
-        for(int i = 0; i < dataSets.length; i++) {
-            Thread sumThread = new Thread(new SumRunnable(dataSets[i]));
-        }
     }
 }
