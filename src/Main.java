@@ -1,20 +1,22 @@
-class Animal {
-    public void sound() {
-        System.out.println("Animal makes a sound.");
+class Calculator {
+    /**
+     * @deprecated Use {@link #addNumber(int, int)} instead.
+     */
+    @Deprecated
+    public int add(int a, int b) {
+        return a + b;
     }
-}
 
-class Dog extends Animal {
-    @Override
-    public void sound() {
-        System.out.println("Dog barks.");
+    public int addNumber(int a, int b) {
+        return a + b;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Animal dog = new Dog();
+        Calculator calculator = new Calculator();
 
-        dog.sound();
+        System.out.println(calculator.add(1, 2));;
+        System.out.println(calculator.addNumber(2, 4));;
     }
 }
